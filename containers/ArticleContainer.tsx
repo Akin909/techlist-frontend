@@ -1,7 +1,14 @@
-import React, { Component } from "react";
+import * as React from "react";
+import { Component } from "react";
+import { graphql, MutationFunc } from "react-apollo";
+import * as startupQueries from "./../graphql/startups";
 
 interface IProps {
-    article: string;
+    article?: string;
+    id: string;
+    mutate?: MutationFunc<{}>;
+    data: any;
+    children: any;
 }
 
 class ArticleContainer extends Component<IProps> {
@@ -14,4 +21,9 @@ class ArticleContainer extends Component<IProps> {
     }
 }
 
-export default ArticleContainer;
+const ArticlesWithQuery = graphql(startupQueries.getStartups)(ArticleContainer);
+
+/* const ArticlesWithQuery = graphql(startupQueries.getStartups, { */
+/*     options: ({ id }: IProps) => ({ variables: { id } }), */
+/* })(ArticleContainer); */
+export default ArticlesWithQuery;

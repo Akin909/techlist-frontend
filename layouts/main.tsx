@@ -1,8 +1,10 @@
 import * as React from "react";
 import Head from "next/head";
+import styled from "styled-components";
+
 import Wrapper from "./Wrapper";
 import Nav from "./../containers/NavContainer";
-import styled from "styled-components";
+import WithData from "./../lib/WithData";
 
 interface ILayoutProps {
     title?: string;
@@ -19,7 +21,7 @@ const Main = styled.main`
     justify-content: center;
 `;
 
-export default ({ children, title = "MedTechList" }: ILayoutProps) =>
+export default WithData(({ children, title = "MedTechList" }: ILayoutProps) =>
     <Wrapper>
         <Head>
             <title>
@@ -32,4 +34,5 @@ export default ({ children, title = "MedTechList" }: ILayoutProps) =>
         <Main>
             {children}
         </Main>
-    </Wrapper>;
+    </Wrapper>,
+);

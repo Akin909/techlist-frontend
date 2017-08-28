@@ -5,11 +5,13 @@ import ArticleContainer from "./../containers/ArticleContainer";
 interface IProps {
     url: {
         pathname: string;
-        query: any;
+        query: {
+            article?: string;
+        };
     };
 }
 
-export default ({ url: { query: { article } } }: IProps) =>
+export default ({ url }: IProps) =>
     <Layout>
-        <ArticleContainer article={article} />
+        <ArticleContainer article={url.query.article} />
     </Layout>;
